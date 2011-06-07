@@ -4,7 +4,8 @@ class Cart < ActiveRecord::Base
   def add_product(product_id)
     current_item = line_items.find_by_product_id(product_id)
     if current_item
-      current_item.quantity.to_i += 1
+      current_item.quantity = current_item.quantity.to_i
+      current_item.quantity += 1
     else
       current_item = line_items.build(:product_id => product_id)
     end
